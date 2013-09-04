@@ -125,6 +125,12 @@
 			
 		}
 		_.addTag = function ( term ){
+			if(_.selectedTags.indexOf(term) >=0) {
+				$(_.selectedTagDivs[_.selectedTags.indexOf(term)]).fadeTo(400, 0.5, function(){
+					$(this).fadeTo(400, 1);
+				});
+				return;
+			}
 			_.selectedTags.push(term);
 			_.$input.val("");
 			$div = $("<div class=\"jst_selectTags\">"+term+"&nbsp;</div>");
@@ -135,7 +141,7 @@
 			_.options.onAddTag.call(term);
 		}
 		_.removeTag = function (obj){
-			_.selectedTagDivs.remove($div);
+			_.selectedTagDivs.remove(obj);
 			obj.remove("a");
 			var tag = obj.text();
 			obj.remove();
