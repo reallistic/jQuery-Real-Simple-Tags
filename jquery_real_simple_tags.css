@@ -1,0 +1,61 @@
+@charset "utf-8";
+/* CSS Document 
+jquery_real_simple_tags
+*/
+.jst_selectTags{
+	position:relative;
+	padding:2px;
+	border-radius:5px;
+	background-color:#ccc;
+	border:1px solid #fff;
+	height:20px;
+	color:#000;
+	font-size:12px;
+	float:left;
+	margin-right:3px;
+}
+.jst_selectTags a{
+	color:#000;
+	font-size:12px;
+	text-decoration:none;
+	outline:none;
+}
+.jst_cont{
+	position:relative;
+	float:left;
+	border:1px solid #000;
+	height:26px;
+	line-height:20px;
+	overflow:visible;
+	padding:3px;
+	margin-right:5px;
+}
+.jst_input{ 
+	height:20px;
+	font-size:10px;
+	border:0;
+	box-shadow:none;
+	padding:0;
+	outline:none;
+	margin:0;
+}
+.jst_input:focus{
+	outline: 0;
+	-webkit-box-shadow: none !important;
+	-moz-box-shadow:none !important;
+	box-shadow: none !important;
+	border:0;		
+	padding:0;
+	outline:none;
+	margin:0;
+}
+.jst_vnf{
+	color:#F00;
+	position:absolute;
+	left:0px;
+	font-size:10px;
+	background-color:#fff;
+	padding:2px;
+	border-radius:5px;
+	border:1px solid #000;
+}

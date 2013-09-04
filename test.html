@@ -1,0 +1,102 @@
+<!doctype html> 
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>jQuery UI Autocomplete - Multiple values</title>
+  <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+  <link rel="stylesheet" href="jquery_real_simple_tags.css" />
+  <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+  <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+  <script src="jquery_real_simple_tags.js"></script>
+  <style type="text/css">
+  	.selectTags{
+		position:relative;
+		padding:2px;
+		border-radius:5px;
+		background-color:#ccc;
+		border:1px solid #fff;
+		height:20px;
+		color:#000;
+		font-size:10px;
+		float:left;
+		margin-right:3px;
+	}
+	.selectTags a{
+		color:#000;
+		font-size:10px;
+		text-decoration:none;
+		outline:none;
+	}
+	#tagcont{
+		position:relative;
+		float:left;
+		border:1px solid #000;
+		height:26px;
+		line-height:20px;
+		overflow:hidden;
+		padding:3px;
+	}
+	#tags{ 
+		height:20px;
+		font-size:10px;
+		border:0;
+		box-shadow:none;
+		padding:0;
+		outline:none;
+		margin:0;
+	}
+	#tags:focus{
+		outline: 0;
+		-webkit-box-shadow: none !important;
+		-moz-box-shadow:none !important;
+		box-shadow: none !important;
+		border:0;		
+		padding:0;
+		outline:none;
+		margin:0;
+	}
+  </style>
+</head>
+<body>
+<div id="test">
+	<label>Manual tags</label><br />
+    <input class="tags" name="tags1" /> <input class="tags" name="tags2" /> <input class="tags" name="tags3" /> <input class="tags" name="tags4" />
+</div>
+<script type="text/javascript">
+ 	(function(){
+		var availableTags = [
+		  "ActionScript",
+		  "AppleScript",
+		  "Asp",
+		  "BASIC",
+		  "C",
+		  "C++",
+		  "Clojure",
+		  "COBOL",
+		  "ColdFusion",
+		  "Erlang",
+		  "Fortran",
+		  "Groovy",
+		  "Haskell",
+		  "Java",
+		  "JavaScript",
+		  "Lisp",
+		  "Perl",
+		  "PHP",
+		  "Python",
+		  "Ruby",
+		  "Scala",
+		  "Scheme"
+		];
+		$("input.tags").jSimpleTags({
+			autocomplete: true,
+			allowSpaces:false,
+			tagsMaxChars:30,
+			restrictTags:true,
+			availableTags: availableTags,
+		});
+	})();
+</script>
+ 
+</body>
+</html>
