@@ -9,58 +9,146 @@
   <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
   <script src="jquery_real_simple_tags.js"></script>
   <style type="text/css">
-  	.selectTags{
-		position:relative;
-		padding:2px;
-		border-radius:5px;
-		background-color:#ccc;
-		border:1px solid #fff;
-		height:20px;
-		color:#000;
-		font-size:10px;
-		float:left;
-		margin-right:3px;
+  	body{
+		font-family:Arial, Helvetica, sans-serif;
+		font-size:12px;
 	}
-	.selectTags a{
-		color:#000;
-		font-size:10px;
-		text-decoration:none;
-		outline:none;
-	}
-	#tagcont{
-		position:relative;
-		float:left;
-		border:1px solid #000;
-		height:26px;
-		line-height:20px;
-		overflow:hidden;
-		padding:3px;
-	}
-	#tags{ 
-		height:20px;
-		font-size:10px;
-		border:0;
-		box-shadow:none;
-		padding:0;
-		outline:none;
-		margin:0;
-	}
-	#tags:focus{
-		outline: 0;
-		-webkit-box-shadow: none !important;
-		-moz-box-shadow:none !important;
-		box-shadow: none !important;
-		border:0;		
-		padding:0;
-		outline:none;
-		margin:0;
+  	h1{
+		font-size:15px;
+		font-weight:bold;
 	}
   </style>
 </head>
 <body>
 <div id="test">
-	<label>Manual tags</label><br />
-    <input class="tags" name="tags1" /> <input class="tags" name="tags2" /> <input class="tags" name="tags3" /> <input class="tags" name="tags4" />
+	<div>
+	<h1>Manual tags Implementation</h1>
+	<p>This allows you full creation of tags without autocomplete or validation. it is the minimal setup</p>
+    <label>Manual tags</label><br/>
+    <input id="tags1" name="tags" />
+    </div>
+    <div class="ui-helper-clearfix"></div>
+    <div>
+    <pre>$("input#tags1").jSimpleTags();</pre>
+    </div>
+    
+    <div>
+    <h1>Autocomplete tags Implementation</h1>
+	<p>This allows you to specify a list to choose from and forces the user to use tags only from that list</p>
+    <label>Autocomplete tags</label><br />
+    <input id="tags2" name="tags" />
+    </div>
+    <div class="ui-helper-clearfix"></div>
+    <div>
+    <pre>var availableTags = [
+      "ActionScript",
+      "AppleScript",
+      "Asp",
+      "BASIC",
+      "C",
+      "C++",
+      "Clojure",
+      "COBOL",
+      "ColdFusion",
+      "Erlang",
+      "Fortran",
+      "Groovy",
+      "Haskell",
+      "Java",
+      "JavaScript",
+      "Lisp",
+      "Perl",
+      "PHP",
+      "Python",
+      "Ruby",
+      "Scala",
+      "Scheme"
+    ];
+    $("input.tags").jSimpleTags({
+        autocomplete: true,
+        allowSpaces:false,
+        tagsMaxChars:30,
+        restrictTags:true,
+        availableTags: availableTags,
+    });</pre>
+    </div>
+    <div>
+    <h1>Manual tags with autocomplete Implementation</h1>
+	<p>This allows you to specify a list to choose from and still accept manual tags</p>
+    <label>manual with autocomplete tags</label><br />
+    <input id="tags3" name="tags" />
+    </div>
+    <div class="ui-helper-clearfix"></div>    
+    <div>
+    <pre>var availableTags = [
+      "ActionScript",
+      "AppleScript",
+      "Asp",
+      "BASIC",
+      "C",
+      "C++",
+      "Clojure",
+      "COBOL",
+      "ColdFusion",
+      "Erlang",
+      "Fortran",
+      "Groovy",
+      "Haskell",
+      "Java",
+      "JavaScript",
+      "Lisp",
+      "Perl",
+      "PHP",
+      "Python",
+      "Ruby",
+      "Scala",
+      "Scheme"
+    ];
+    $("input.tags").jSimpleTags({
+        autocomplete: true,
+        allowSpaces:false,
+        tagsMaxChars:30,
+        restrictTags:false,
+        availableTags: availableTags,
+    });</pre>
+    
+    </div>
+    
+    <h1>Usage:</h1>
+    <div>
+    <pre>$("input.tags").jSimpleTags();</pre> 
+    </div>
+    <h2>Options</h2>
+    <div>
+    <pre>
+    autocomplete: false, //use jQuery ui autocomplete (Requires jQuery-ui)
+    restrictTags: false, //only allow specified tags (Requires availableTags)
+    backspaceCanRemove: true, //Allow the backspace key to remove tags
+    backspaceRemoveSpeed: 2000, //speed in ms to wait for secoond backspace key press before removing tag
+    tagsMaxChars: 60, //maximum allowed characters for all tags (0 is infinite)
+    tagsMax: 0, //maximum allowed tags (0 is infinite)
+    selectedTags: [], //array of selected tags on initiate
+    onAddTag: function() {}, //callback
+    onRemoveTag: function() {}, //callback
+    onTagNotFound: function() {}, //callback
+    valueNotFoundtext: "Value Not Found", //text to display when a tag is not found and they are restricted
+    valueNotFoundSpeed: 500, //speed to fade in value not found text
+    valueNotFoundEffect: "drop", //jquery ui effect for value not found text show
+    autoCompleteOptions: {}, //jquery ui - autocomplete initialization settings.
+    allowSpaces: true, //allow spaces in tags. If false space will submit tag
+    availableTags:[] //array of tags to select from when using autocomplete=true</pre>
+    </div>
+    
+    <h2>Methods</h2>
+    <div>
+    <pre>
+    var tags = $("#tags").getjSimpleTags(); //get jSimpleTags Object instance
+    
+    tags.addTag(value); //add tag dynamically
+    tags.removeTag($("#tags".find(".jst_selectTags")[0]); //dynamically remove the first tag
+    tags.destroy(); //remove widget
+    </pre>
+    </div>
 </div>
 <script type="text/javascript">
  	(function(){
@@ -88,13 +176,21 @@
 		  "Scala",
 		  "Scheme"
 		];
-		$("input.tags").jSimpleTags({
+		$("input#tags3").jSimpleTags({
+			autocomplete: true,
+			allowSpaces:false,
+			tagsMaxChars:30,
+			restrictTags:false,
+			availableTags: availableTags,
+		});
+		$("input#tags2").jSimpleTags({
 			autocomplete: true,
 			allowSpaces:false,
 			tagsMaxChars:30,
 			restrictTags:true,
 			availableTags: availableTags,
 		});
+		$("input#tags1").jSimpleTags();
 	})();
 </script>
  
